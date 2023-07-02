@@ -2,6 +2,8 @@
 
 'use strict';
 
+const { datasourceConfig } = require('./datasource.dev');
+
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -16,7 +18,24 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1688200877377_3940';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [ 'errorHandler' ];
+
+  config.security = {
+    csrf: {
+      enable: false,
+      ignoreJSON: true,
+    },
+  };
+
+  config.validatePlus = {
+    convert: true,
+    widelyUndefined: true,
+  };
+
+
+  config.sequelize = {
+    datasources: datasourceConfig(),
+  };
 
   // add your user config here
   const userConfig = {
