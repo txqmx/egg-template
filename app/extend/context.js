@@ -23,6 +23,44 @@ module.exports = {
 
   },
 
+  async getListParams(keywords = { in: [], like: [] }, isPage = false) {
+    const params = await this.getParams(false, this);
+    let listParams = {};
+    if (isPage) {
+      listParams = Object.assign(listParams, {
+        limit: params.pageSize,
+        offset: (params.pageNum - 1) * params.pageSize,
+      });
+    }
+    const where = {};
+    keywords.in.forEach(item => {
+      if (params[item]) {
+        // 类型转换问题待处理
+        if (item === 'id') {
+          const ids = params.id.split(',').map(item => parseInt(item));
+          where[item] = {
+            $in: ids,
+          };
+        } else {
+          where[item] = {
+            $in: [ item ],
+          };
+        }
+
+      }
+    });
+    keywords.like.forEach(item => {
+      if (params[item]) {
+        where[item] = {
+          $like: `%${params[item]}%`,
+        };
+      }
+    });
+    listParams.where = where;
+
+    return listParams;
+  },
+
   // 成功返回
   success(data = null, code = 1, status = 200) {
     this.status = status;

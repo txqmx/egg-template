@@ -3,7 +3,7 @@ const Op = require('sequelize').Op;
 
 const mainDatabase = [
   {
-    database: 'egg_test',
+    database: 'zxt_family',
     username: 'zongxintang',
     password: '12345678',
 
