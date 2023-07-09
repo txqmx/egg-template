@@ -1,18 +1,15 @@
 'use strict';
 module.exports = (app, model) => {
-  const { STRING, INTEGER, TEXT, DATE } = app.Sequelize;
+  const { STRING, INTEGER, TEXT } = app.Sequelize;
 
   const Genealogy = model.define('genealogy', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
-    code: STRING(50),
-    name: STRING(50),
-    password: STRING(50),
-    info: STRING(150),
-    cover: STRING(500),
+    code: STRING(60),
+    name: STRING(60),
+    password: STRING(255),
+    desc: STRING(255),
+    cover: STRING(255),
     detail: TEXT('long'),
-    pageId: STRING(50),
-    createTime: DATE,
-    updateTime: DATE,
   });
   // Genealogy.associate = () => {
   //   model.Genealogy.hasOne(model.Page, { sourceKey: 'pageId', foreignKey: 'id' });

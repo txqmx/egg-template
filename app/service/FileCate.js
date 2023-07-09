@@ -3,12 +3,12 @@
 const BaseService = require('./BaseService');
 // const md5 = require('md5');
 
-class GenealogyService extends BaseService {
+class FileCateService extends BaseService {
   constructor(...arg) {
     super(...arg);
     this.delegate = this.ctx.header.family || 'model'; // ctx.model
-    this.model = 'Genealogy'; // 模型名称
+    this.model = 'FileCate'; // 模型名称
   }
 }
 
-module.exports = GenealogyService;
+module.exports = FileCateService;

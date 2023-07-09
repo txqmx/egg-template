@@ -3,7 +3,7 @@ const Op = require('sequelize').Op;
 
 const mainDatabase = [
   {
-    database: 'zxt_family',
+    database: 'egg_test',
     username: 'zongxintang',
     password: '12345678',
 
@@ -23,8 +23,8 @@ exports.datasourceConfig = () => {
       define: {
         timestamps: true, // 自动写入create,update,delete时间戳
         freezeTableName: true, // 防止修改表名为复数
-        createdAt: 'createTime',
-        updatedAt: 'updateTime',
+        createdAt: 'create_time',
+        updatedAt: 'update_time',
       },
       operatorsAliases: {
         $like: Op.like,

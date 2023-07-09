@@ -5,32 +5,32 @@ const Service = require('egg').Service;
 class BseService extends Service {
   constructor(...arg) {
     super(...arg);
-    this.model = 'model';
+    this.delegate = 'model';
   }
 
   async findAll(params) {
     const { ctx } = this;
-    const result = await ctx[this.model][this.modelName].findAll(params);
+    const result = await ctx[this.delegate][this.model].findAll(params);
     return result;
   }
 
   async create(params) {
     const { ctx } = this;
-    const result = await ctx[this.model][this.modelName].create(params);
+    const result = await ctx[this.delegate][this.model].create(params);
     return result;
   }
 
   async findOne(id) {
     const { ctx } = this;
     const _where = { id };
-    const result = await ctx[this.model][this.modelName].findOne({
+    const result = await ctx[this.delegate][this.model].findOne({
       where: _where,
     });
     return result;
   }
 
   async update({ id, ...params }) {
-    const result = await this.ctx[this.model][this.modelName].findByPk(id);
+    const result = await this.ctx[this.delegate][this.model].findByPk(id);
     if (!result) {
       this.ctx.error('不存在');
     }
@@ -39,7 +39,7 @@ class BseService extends Service {
   }
 
   async delete(id) {
-    const result = await this.ctx[this.model][this.modelName].findByPk(id);
+    const result = await this.ctx[this.delegate][this.model].findByPk(id);
     if (!result) {
       this.ctx.error('不存在');
     }

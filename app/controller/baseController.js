@@ -28,8 +28,7 @@ class BaseController extends Controller {
   async findAll() {
     const { ctx } = this;
     const param = await ctx.getListParams(this.keywords);
-    console.log('---', param);
-    const result = await ctx.service[this.serviceName].findAll(param);
+    const result = await ctx.service[this.service].findAll(param);
     this.ctx.success(result);
   }
 
@@ -37,7 +36,8 @@ class BaseController extends Controller {
   async create() {
     const { ctx } = this;
     const params = await ctx.getParams(this.scene.add);
-    const result = await ctx.service[this.serviceName].create(params);
+    delete params.id;
+    const result = await ctx.service[this.service].create(params);
     if (result) {
       this.ctx.success(result);
     } else {
@@ -50,7 +50,7 @@ class BaseController extends Controller {
     const { ctx } = this;
     const params = await ctx.getParams(this.scene.detail);
 
-    const result = await ctx.service[this.serviceName].findOne(params.id);
+    const result = await ctx.service[this.service].findOne(params.id);
     if (result) {
       this.ctx.success(result);
     } else {
@@ -62,7 +62,7 @@ class BaseController extends Controller {
   async update() {
     const { ctx } = this;
     const params = await ctx.getParams(this.scene.edit);
-    const result = await ctx.service[this.serviceName].update(params);
+    const result = await ctx.service[this.service].update(params);
     this.ctx.success(result);
   }
 
@@ -70,7 +70,7 @@ class BaseController extends Controller {
   async delete() {
     const { ctx } = this;
     const params = await ctx.getParams(this.scene.delete);
-    await ctx.service[this.serviceName].delete(params.id);
+    await ctx.service[this.service].delete(params.id);
     this.ctx.success('success');
   }
 }
