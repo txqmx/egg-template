@@ -43,10 +43,9 @@ module.exports = {
           };
         } else {
           where[item] = {
-            $in: [ item ],
+            $in: [ params[item] ],
           };
         }
-
       }
     });
     keywords.like.forEach(item => {

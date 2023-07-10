@@ -27,8 +27,8 @@ class BaseController extends Controller {
   // 查询列表
   async findAll() {
     const { ctx } = this;
-    const param = await ctx.getListParams(this.keywords);
-    const result = await ctx.service[this.service].findAll(param);
+    const params = await ctx.getListParams(this.keywords);
+    const result = await ctx.service[this.service].findAll(params);
     this.ctx.success(result);
   }
 
@@ -72,6 +72,14 @@ class BaseController extends Controller {
     const params = await ctx.getParams(this.scene.delete);
     await ctx.service[this.service].delete(params.id);
     this.ctx.success('success');
+  }
+
+  // 查询树列表
+  async treeList() {
+    const { ctx } = this;
+    const params = await ctx.getParams();
+    const result = await ctx.service[this.service].findTree(params);
+    this.ctx.success(result);
   }
 }
 

@@ -9,6 +9,8 @@ class FileCateService extends BaseService {
     this.delegate = this.ctx.header.family || 'model'; // ctx.model
     this.model = 'FileCate'; // 模型名称
   }
+
+
 }
 
 module.exports = FileCateService;

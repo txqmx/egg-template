@@ -9,8 +9,10 @@ class FileCateController extends BaseController {
     this.scene.add = {
       name: [{ required: true, message: 'name不能为空' }],
     };
-    this.keywords.in = [ 'type' ];
+    this.keywords.in = [ 'id', 'type', 'pid' ];
   }
+
+
 }
 
 module.exports = FileCateController;

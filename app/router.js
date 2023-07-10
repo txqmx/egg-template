@@ -16,6 +16,7 @@ module.exports = app => {
   router.post('/api/fileCate/create', controller.fileCate.create);
   router.get('/api/fileCate/detail', controller.fileCate.findOne);
   router.get('/api/fileCate/list', controller.fileCate.findAll);
+  router.get('/api/fileCate/treeList', controller.fileCate.treeList);
   router.post('/api/fileCate/update', controller.fileCate.update);
   router.post('/api/fileCate/delete', controller.fileCate.delete);
 };
