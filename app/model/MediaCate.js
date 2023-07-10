@@ -2,7 +2,7 @@
 module.exports = (app, model) => {
   const { STRING, INTEGER, TINYINT } = app.Sequelize;
 
-  const ArticleCate = model.define('ArticleCate', {
+  const MediaCate = model.define('MediaCate', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     name: STRING(60),
     desc: STRING(255),
@@ -11,5 +11,5 @@ module.exports = (app, model) => {
     is_show: { type: TINYINT(1), defaultValue: 1 },
   });
 
-  return ArticleCate;
+  return MediaCate;
 };

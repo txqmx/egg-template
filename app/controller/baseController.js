@@ -1,33 +1,18 @@
 'use strict';
+
+
 const Controller = require('egg').Controller;
 
 class BaseController extends Controller {
   constructor(...arg) {
     super(...arg);
-    // 场景校验
-    this.scene = {
-      add: {},
-      edit: {
-        id: [{ required: true, message: 'id不能为空' }],
-      },
-      detail: {
-        id: [{ required: true, message: 'id不能为空' }],
-      },
-      delete: {
-        id: [{ required: true, message: 'id不能为空' }],
-      },
-    };
-    // 列表模糊搜索字段
-    this.keywords = {
-      in: [ 'id' ],
-      like: [],
-    };
+    this.service = '';
   }
 
   // 查询列表
   async findAll() {
     const { ctx } = this;
-    const params = await ctx.getListParams(this.keywords);
+    const params = await this.validate.getListParams();
     const result = await ctx.service[this.service].findAll(params);
     this.ctx.success(result);
   }
@@ -35,8 +20,7 @@ class BaseController extends Controller {
   // 新增
   async create() {
     const { ctx } = this;
-    const params = await ctx.getParams(this.scene.add);
-    delete params.id;
+    const params = await this.validate.getParams('Add');
     const result = await ctx.service[this.service].create(params);
     if (result) {
       this.ctx.success(result);
@@ -48,8 +32,7 @@ class BaseController extends Controller {
   // 查询详情
   async findOne() {
     const { ctx } = this;
-    const params = await ctx.getParams(this.scene.detail);
-
+    const params = await this.validate.getParams('Detail');
     const result = await ctx.service[this.service].findOne(params.id);
     if (result) {
       this.ctx.success(result);
@@ -61,7 +44,7 @@ class BaseController extends Controller {
   // 编辑
   async update() {
     const { ctx } = this;
-    const params = await ctx.getParams(this.scene.edit);
+    const params = await this.validate.getParams('Edit');
     const result = await ctx.service[this.service].update(params);
     this.ctx.success(result);
   }
@@ -69,7 +52,7 @@ class BaseController extends Controller {
   // 删除
   async delete() {
     const { ctx } = this;
-    const params = await ctx.getParams(this.scene.delete);
+    const params = await this.validate.getParams('Delete');
     await ctx.service[this.service].delete(params.id);
     this.ctx.success('success');
   }
@@ -77,7 +60,7 @@ class BaseController extends Controller {
   // 查询树列表
   async treeList() {
     const { ctx } = this;
-    const params = await ctx.getParams();
+    const params = await this.validate.getParams();
     const result = await ctx.service[this.service].findTree(params);
     this.ctx.success(result);
   }
