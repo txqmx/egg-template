@@ -59,7 +59,10 @@ class BaseValidate {
     return this.params;
   }
 
-  async getParams() {
+  async getParams(type) {
+    if (type && this[`scene${type}`]) {
+      this[`scene${type}`]();
+    }
     return await this.checkValidate();
   }
 
@@ -97,6 +100,14 @@ class BaseValidate {
     });
     listParams.where = where;
     return listParams;
+  }
+
+  sceneAdd() {
+    this.filterParam([ 'id' ]);
+  }
+
+  sceneEdit() {
+    this.setValidate([ 'id' ]);
   }
 
   sceneDetail() {
