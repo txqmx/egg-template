@@ -25,12 +25,12 @@ class ArticleValidate extends BaseValidate {
 
 
   sceneAdd() {
-    this.setValidate([ 'name' ]);
+    this.setValidate([ 'title' ]);
     this.filterParam([ 'id' ]);
   }
 
   sceneEdit() {
-    this.setValidate([ 'id', 'name' ]);
+    this.setValidate([ 'id', 'title' ]);
     this.filterParam([ 'code' ]);
   }
 

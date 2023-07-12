@@ -2,7 +2,7 @@
 module.exports = (app, model) => {
   const { STRING, INTEGER, TINYINT } = app.Sequelize;
 
-  const MediaCate = model.define('MediaCate', {
+  const MediaCate = model.define('media_cate', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     name: STRING(60),
     desc: STRING(255),

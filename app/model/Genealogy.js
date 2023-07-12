@@ -2,7 +2,7 @@
 module.exports = (app, model) => {
   const { STRING, INTEGER, TEXT } = app.Sequelize;
 
-  const Genealogy = model.define('Genealogy', {
+  const Genealogy = model.define('genealogy', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     code: STRING(60),
     name: STRING(60),

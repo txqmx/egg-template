@@ -2,7 +2,7 @@
 module.exports = (app, model) => {
   const { STRING, INTEGER, TINYINT } = app.Sequelize;
 
-  const File = model.define('File', {
+  const File = model.define('file', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     cid: INTEGER,
     name: STRING(60),

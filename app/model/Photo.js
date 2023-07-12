@@ -2,7 +2,7 @@
 module.exports = (app, model) => {
   const { STRING, INTEGER, TINYINT, TEXT } = app.Sequelize;
 
-  const Photo = model.define('Photo', {
+  const Photo = model.define('photo', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     cid: INTEGER,
     title: STRING(255),

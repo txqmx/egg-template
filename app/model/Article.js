@@ -1,8 +1,7 @@
 'use strict';
 module.exports = (app, model) => {
   const { STRING, INTEGER, TINYINT, TEXT } = app.Sequelize;
-
-  const Article = model.define('Article', {
+  const Article = model.define('article', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     cid: INTEGER,
     title: STRING(255),

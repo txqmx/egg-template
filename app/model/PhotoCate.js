@@ -2,7 +2,7 @@
 module.exports = (app, model) => {
   const { STRING, INTEGER, TINYINT } = app.Sequelize;
 
-  const PhotoCate = model.define('PhotoCate', {
+  const PhotoCate = model.define('photo_cate', {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     name: STRING(60),
     desc: STRING(255),

@@ -7,7 +7,7 @@ module.exports = {
   //   package: 'egg-jwt',
   // },
   sequelize: {
-    enable: true,
+    enable: false,
     package: 'egg-sequelize',
   },
   validatePlus: {
