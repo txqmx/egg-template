@@ -36,5 +36,6 @@ module.exports = app => {
 
   // 系统
   router.get('/api/system/getDatabases', controller.systemController.getDatabases);
+  router.post('/api/system/testConnection', controller.systemController.testConnection);
 
 };
