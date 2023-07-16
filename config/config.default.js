@@ -41,6 +41,11 @@ module.exports = appInfo => {
     },
   };
 
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+  };
+
   config.validatePlus = {
     convert: true,
     widelyUndefined: true,

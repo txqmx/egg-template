@@ -13,18 +13,18 @@ class SystemController extends Controller {
 
   async getDatabases() {
     let result = await this.app.multiData.getDatabases();
-    console.log(this.app.model);
+    // console.log(result);
     result = result.map(item => {
-      return item.options;
+      console.log(item.sequelize.models);
+      return Object.keys(item.sequelize.models);
     });
-
+    console.log(result);
     this.ctx.success(result || []);
   }
 
   async testConnection() {
     const params = await this.validate.getParams();
     await this.app.multiData.testConnection(params);
-
     this.ctx.success('连接成功');
   }
 }

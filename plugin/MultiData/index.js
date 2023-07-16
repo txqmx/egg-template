@@ -3,6 +3,7 @@
 const path = require('path');
 const sleep = require('mz-modules/sleep');
 const AUTH_RETRIES = Symbol('authenticateRetries');
+const Sequelize = require('sequelize');
 const Op = require('sequelize').Op;
 
 class MultiData {
@@ -34,7 +35,7 @@ class MultiData {
       },
     };
     this.config = app.config.sequelize;
-    app.Sequelize = this.config.Sequelize || require('sequelize');
+    app.Sequelize = Sequelize;
     this.databases = [];
 
     this.init();
@@ -94,6 +95,11 @@ class MultiData {
       config,
     };
     return databaseInfo;
+  }
+
+  // 关闭连接
+  closeDatabase() {
+
   }
 
   // 创建模型
@@ -184,6 +190,7 @@ class MultiData {
     }
   }
 
+  // 获取链接列表
   getDatabases() {
     return this.databases;
   }
