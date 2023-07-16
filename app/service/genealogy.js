@@ -6,7 +6,7 @@ const BaseService = require('./BaseService');
 class GenealogyService extends BaseService {
   constructor(...arg) {
     super(...arg);
-    this.delegate = 'model'; // ctx.model
+    this.delegate = this.ctx.header.family || 'model'; // ctx.model
     this.model = 'Genealogy'; // 模型名称
   }
 
